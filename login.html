@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Consultoria Global</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" required>
+            </div>
+            <span class="error" id="error-login">Usuario o contraseña incorrectos</span>
+            <br>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let usuario = document.getElementById("usuario").value;
+            let password = document.getElementById("password").value;
+            
+            // Validación simple (usuario: admin, contraseña: 1234)
+            if (usuario === "admin" && password === "1234") {
+                localStorage.setItem("auth", "true"); // Guarda la autenticación
+                window.location.href = "dashboard.html"; // Redirige a la página privada
+            } else {
+                document.getElementById("error-login").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

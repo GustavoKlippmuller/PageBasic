@@ -1,23 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acerca de</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="styles/app.css">
 </head>
 <body>
     <div id="menu-container"></div>
-    <h2>Acerca de</h2>
-    <div class="container main_content acerca_de">
-        <img class="imagen" src="img/Developer.jpeg" alt="Developer">
-        <div class="info_acerca">
-            <div class="nombre">Gustavo Klippmüller</div>
-            <div class="posicion">QA Automation</div>
-            <div class="compania">Consultoria Global</div>    
+    <div class="container main_content">
+        <div class="content">
+            <h2>Bienvenido a Consultoría Global</h1>
+            <p>Aquí puedes interactuar con los distintos elementos de prueba.</p>
         </div>
-
+        <!--button class="logout-btn" onclick="logout()">Cerrar sesión</button-->
     </div>
+
+
     <script>
         fetch("menu.html")
             .then(response => response.text())

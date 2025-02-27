@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Paginada</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background-color: darkgray;
+        }
+
+        .pagination {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <table id="tabla-personas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="pagination">
+        <button onclick="cambiarPagina(-1)">Anterior</button>
+        <span id="pagina-actual">1</span> / <span id="total-paginas">3</span>
+        <button onclick="cambiarPagina(1)">Siguiente</button>
+    </div>
+
+    <script>
+        const datos = [
+            { nombre: "Juan", apellido: "Pérez", edad: 25, ciudad: "Buenos Aires" },
+            { nombre: "María", apellido: "Gómez", edad: 30, ciudad: "Córdoba" },
+            { nombre: "Carlos", apellido: "Fernández", edad: 28, ciudad: "Rosario" },
+            { nombre: "Lucía", apellido: "Martínez", edad: 22, ciudad: "Mendoza" },
+            { nombre: "Andrés", apellido: "Sánchez", edad: 35, ciudad: "Salta" },
+            { nombre: "Sofía", apellido: "Díaz", edad: 26, ciudad: "Tucumán" },
+            { nombre: "Fernando", apellido: "López", edad: 29, ciudad: "Neuquén" },
+            { nombre: "Camila", apellido: "Rodríguez", edad: 24, ciudad: "La Plata" },
+            { nombre: "Diego", apellido: "García", edad: 31, ciudad: "Mar del Plata" },
+            { nombre: "Valeria", apellido: "Torres", edad: 27, ciudad: "San Juan" },
+            { nombre: "Ricardo", apellido: "Vega", edad: 32, ciudad: "Santa Fe" },
+            { nombre: "Paula", apellido: "Méndez", edad: 23, ciudad: "Jujuy" },
+            { nombre: "Roberto", apellido: "Ríos", edad: 40, ciudad: "Catamarca" },
+            { nombre: "Gabriela", apellido: "Navarro", edad: 29, ciudad: "Chaco" },
+            { nombre: "Manuel", apellido: "Herrera", edad: 33, ciudad: "Corrientes" },
+            { nombre: "Elena", apellido: "Figueroa", edad: 26, ciudad: "San Luis" },
+            { nombre: "Javier", apellido: "Castro", edad: 38, ciudad: "Río Negro" },
+            { nombre: "Carolina", apellido: "Suárez", edad: 25, ciudad: "Chubut" },
+            { nombre: "Matías", apellido: "Aguirre", edad: 28, ciudad: "Misiones" },
+            { nombre: "Natalia", apellido: "Luna", edad: 27, ciudad: "Santiago del Estero" },
+            { nombre: "Hernán", apellido: "Ortega", edad: 30, ciudad: "La Rioja" },
+            { nombre: "Florencia", apellido: "Ramírez", edad: 29, ciudad: "Entre Ríos" },
+            { nombre: "Alejandro", apellido: "Morales", edad: 35, ciudad: "Formosa" },
+            { nombre: "Daniela", apellido: "Silva", edad: 31, ciudad: "Tierra del Fuego" },
+            { nombre: "Martín", apellido: "Álvarez", edad: 33, ciudad: "Santa Cruz" }
+        ];
+
+        let paginaActual = 1;
+        const registrosPorPagina = 10;
+        const totalPaginas = Math.ceil(datos.length / registrosPorPagina);
+
+        document.getElementById("total-paginas").textContent = totalPaginas;
+
+        function mostrarDatos() {
+            const inicio = (paginaActual - 1) * registrosPorPagina;
+            const fin = inicio + registrosPorPagina;
+            const datosPagina = datos.slice(inicio, fin);
+
+            const tbody = document.querySelector("#tabla-personas tbody");
+            tbody.innerHTML = "";
+
+            datosPagina.forEach(persona => {
+                const fila = `<tr>
+                                <td>${persona.nombre}</td>
+                                <td>${persona.apellido}</td>
+                                <td>${persona.edad}</td>
+                                <td>${persona.ciudad}</td>
+                              </tr>`;
+                tbody.innerHTML += fila;
+            });
+
+            document.getElementById("pagina-actual").textContent = paginaActual;
+        }
+
+        function cambiarPagina(direccion) {
+            if ((direccion === -1 && paginaActual > 1) || (direccion === 1 && paginaActual < totalPaginas)) {
+                paginaActual += direccion;
+                mostrarDatos();
+            }
+        }
+
+        mostrarDatos();
+    </script>
+
+</body>
+</html>

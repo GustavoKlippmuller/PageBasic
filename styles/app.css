@@ -1,0 +1,257 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+    flex-direction: column;
+    overflow: hidden; /* Bloquea el scroll */
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+.main_content {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 2.25rem; /* 50% más grande que el tamaño base de 1.5rem */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    margin-right: 15px;
+    text-align: left;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.error {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.menu {
+    background-color: #007bff;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    display: flex;
+    justify-content: flex-end; /* Alinea el menú a la derecha */
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Lista principal del menú */
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+    padding-right: 20px; /* Agrega 20px de espacio en el borde derecho */
+}
+
+/* Estilo de los enlaces del menú */
+.menu ul li {
+    position: relative;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.menu ul li:hover > ul {
+    display: block;
+}
+
+/* Submenú */
+.menu ul ul {
+    display: none;
+    position: absolute;
+    background: #0056b3;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 180px;
+    top: 100%;
+    right: 0;
+}
+
+.menu ul ul li {
+    width: 100%;
+}
+
+.menu ul ul li a {
+    padding: 10px;
+    display: block;
+}
+
+/* Ajuste para que el contenido no quede oculto */
+.content {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 60px; /* Espacio para que no quede oculto debajo del menú */
+}
+
+.first-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.last-line {
+    margin-top: 50px;
+}
+
+.imagen {
+    width: 25%;
+    height: auto;
+}
+
+.acerca_de {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.info_acerca {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 30px;
+}
+
+.nombre {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.posicion {
+    font-size: 20px;
+}
+
+.compania {
+    font-size: 12px;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.left, .right {
+    width: 50%; /* Cada div ocupa la mitad */
+    display: flex; /* Para centrar el contenido */
+    align-items: center;
+    justify-content: center;
+}
+
+.cincuenta {
+    width: 45%;
+    height: auto;
+}
+
+.checkbox {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.checkbox h3 {
+    margin-bottom: 5px;
+}
+
+.option {
+    display: flex; /* Alinear en fila */
+    flex-direction: row;
+    width: 100%;
+}
+
+.option label {
+    margin: 0;
+    font-weight: 400;
+    display: block;
+}
+
+.option input {
+    margin: 0;
+    flex-shrink: 0; /* Evita que el checkbox se expanda */
+    width: 16px; /* Ajusta el ancho del checkbox */
+    height: 16px; /* Ajusta la altura del checkbox */
+    margin-right: 10px;
+}  
+
+.alinear-vertical {
+    display: flex;
+    /*align-items: center;*/
+    flex-direction: column;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 70px;
+}
+
+.formulario button {
+    grid-column: 1 / span 2;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Elementos</title>
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div class="container main_content">
+        <h2>Práctica: Búsqueda de Elementos</h2>
+        
+        <div class="first-line">
+            <!-- Elemento con ID -->
+            <div class="input-group">
+                <label for="elemento-id">Usuario</label>
+                <input type="text" id="elemento-id" placeholder="Buscar por ID">
+            </div>
+            
+            <!-- Elemento con NAME -->
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="text" name="elemento-name" placeholder="Buscar por Name">
+            </div>
+            
+            <!-- Elemento con CLASS -->
+            <div class="input-group">
+                <label>Botón con CLASS:</label>
+                <button class="btn-class" id="clickButton">Aceptar</button>
+            </div>
+        </div>
+        <div>
+            <label id="selectedOptionLabel">Opción seleccionada: Ninguna</label>
+        </div>
+
+        <div class="first-line last-line">
+            <!-- Elemento con XPath -->
+            <div class="input-group">
+                <label>Fecha actual:</label>
+                <div class="xpath-element" id="dateDiv"></div>
+            </div>
+            
+            <!-- Elemento con CSS Selector -->
+            <div class="input-group">
+                <label>Enlace con CSS Selector:</label>
+                <a href="acerca.html" class="css-selector">Ir a otro sitio</a>
+            </div>
+        </div>
+    
+    </div>
+    <script>
+        fetch("menu.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("menu-container").innerHTML = data;
+            });
+    </script>
+
+    <script>
+        // Verificar si el usuario está autenticado
+        if (localStorage.getItem("auth") !== "true") {
+            window.location.href = "login.html"; // Redirigir si no está autenticado
+        }
+
+        // Función para cerrar sesión
+        function logout() {
+            localStorage.removeItem("auth");
+            window.location.href = "login.html";
+        }
+    </script>
+    <script>
+        // Obtén el botón y el label
+        const button = document.getElementById('clickButton');
+        const label = document.getElementById('selectedOptionLabel');
+    
+        // Añadir un evento de clic al botón
+        button.addEventListener('click', () => {
+          // Muestra una alerta con dos opciones (Confirm)
+          const userChoice = confirm('¿Aceptas términos y condiciones? Haz clic en Aceptar o Cancelar.');
+    
+          // Verifica qué opción fue seleccionada
+          if (userChoice) {
+            label.textContent = 'Opción seleccionada: Aceptar';
+          } else {
+            label.textContent = 'Opción seleccionada: Cancelar';
+          }
+        });
+      </script>
+        <script>
+            // Obtén el div donde se mostrará la fecha
+            const dateDiv = document.getElementById('dateDiv');
+        
+            // Obtén la fecha actual
+            const currentDate = new Date();
+        
+            // Formatea la fecha en un formato legible
+            const formattedDate = currentDate.toLocaleDateString('es-AR', {
+              weekday: 'long', // Día de la semana
+              year: 'numeric', // Año
+              month: 'long', // Mes
+              day: 'numeric' // Día
+            });
+        
+            // Muestra la fecha en el div
+            dateDiv.textContent = `Fecha actual: ${formattedDate}`;
+          </script>
+</body>
+</html>

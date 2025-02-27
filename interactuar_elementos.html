@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interacción con Elementos</title>
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div class="container main_content">
+        <h2>Práctica: Interacción con Elementos</h2>
+        <div class="bottom">
+            <div class="left">
+                <!-- Input de texto -->
+                <div class="first_line">
+                    <div class="input-group">
+                        <label for="texto">Nombre completo:</label>
+                        <input type="text" id="firstname" placeholder="Escribe aquí">
+                    </div>
+                    <div class="input-group">
+                        <label for="texto">Apellido completo:</label>
+                        <input type="text" id="lastname" placeholder="Escribe aquí">
+                    </div>
+                    <!-- Dropdown (Select) -->
+                    <div class="input-group">
+                        <label for="dropdown">Tipo Documento:</label>
+                        <select id="dropdown">
+                            <option selected disabled>--Seleccionar una opcion--</option>
+                            <option value="dni">Documento Nacional de Identidad</option>
+                            <option value="le">Libreta de enrolamiento</option>
+                            <option value="lc">Libreta civica</option>
+                            <option value="ci">Cedula de indentidad</option>
+                            <option value="pas">Pasaporte</option>
+                        </select>
+                    </div>
+                    <!-- Imagen -->
+                    <div class="input-group">
+                        <label>Imagen de prueba:</label><br>
+                        <img class="cincuenta" src="img/caballos.jpg" alt="Imagen de caballos" id="imagen">
+                    </div>
+                </div>
+            </div>
+            <div class="right alinear-vertical">
+                
+                <!-- Checkbox -->
+                <div class="checkbox">
+                    <h3>Seleccionar permisos</h3>
+                    <div class="option">
+                        <input type="checkbox" id="admin" name="permisos">
+                        <label>Administrador</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="manager" name="permisos">
+                        <label>Gestor de proyectos</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="colaborator" name="permisos">
+                        <label>Colaborador</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="reader" name="permisos">
+                        <label>Solo lectura</label>
+                    </div>
+                    <div class="option">
+                        <input type="checkbox" id="guest" name="permisos">
+                        <label>Invitado</label>
+                    </div>
+                </div>
+                <!-- Radio buttons -->
+                <div class="input-group checkbox">
+                    <h3>Selecciona una opción:</label><br>
+                    <div class="option">
+                        <input type="radio" name="ropcion" value="virtual" id="virtual">
+                        <label for="virtual">Virtual</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="ropcion" value="hibrido" id="hibrido">
+                        <label for="hibrido">Hibrido</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" name="ropcion" value="presencial" id="presencial">
+                        <label for="presencial">Presencial</label>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        fetch("menu.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("menu-container").innerHTML = data;
+            });
+    </script>
+
+    <script>
+        // Verificar si el usuario está autenticado
+        if (localStorage.getItem("auth") !== "true") {
+            window.location.href = "login.html"; // Redirigir si no está autenticado
+        }
+
+        // Función para cerrar sesión
+        function logout() {
+            localStorage.removeItem("auth");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
